@@ -1,9 +1,6 @@
 pipeline {
   agent {
-    docker {
-      args '-v /jenkins/.gradle:/jenkins/.gradle'
-      image 'gradle:latest'
-    }
+    any
   }
   stages {
     stage('Build') {
