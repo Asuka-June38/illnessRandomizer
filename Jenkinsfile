@@ -1,21 +1,18 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      args '-v /jenkins/.gradle:/jenkins/.gradle'
+      image 'gradle:latest'
+    }
+  }
   stages {
-    stage('Run') {
-      agent any
+    stage('Build') {
       steps {
-        container(name: 'run')
+        sh './gradlew :build'
       }
     }
-
-    stage('Send Email') {
-      steps {
-        emailext(subject: 'Build is done', body: 'Build is done!', from: 'Local Jenkins', to: 'asukasmit@gmail.com')
-      }
-    }
-
   }
   environment {
-    local = 'local'
+    GRADLE_USER_HOME = '/jenkins/.gradle'
   }
 }
