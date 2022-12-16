@@ -1,8 +1,9 @@
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class areYouIllToday {
+public class Program {
     static String line = "";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -12,14 +13,7 @@ public class areYouIllToday {
         } catch (IllegalStateException | NoSuchElementException e) {
             System.out.println("There is an error");
         }
-        if (line.equals("y")) {
-            System.out.println("Take rest!");
-        }
-        else if (line.equals("n")) {
-            System.out.println("Go back to work!");
-        }
-        else {
-            System.out.println("Your answer is unreadable. Are you ok?");
-        }
+
+        System.out.println(ResponseProvider.Get(line));
     }
 }
